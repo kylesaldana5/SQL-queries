@@ -37,16 +37,39 @@ SELECT a.Title, s.Title FROM Song s LEFT JOIN Album a ON s.AlbumId = a.AlbumId;
 -- -----------------------------------------------------------------------------------------------------------
 
 
-6.Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+6.Write a SELECT statement to display how many songs exist for each album. Youll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT count (song.songid) "song count", album.title 
+FROM song
+JOIN album 
+ON song.albumid = album.albumid
+GROUP by album.title
 
 
+7.Write a SELECT statement to display how many songs exist for each artist. Youll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT count(song.songid) "song count", artist.artistname
+FROM song
+Join artist
+ON song.artistid = artist.artistid
+GROUP by artist.artistname 
 
-7.Write a SELECT statement to display how many songs exist for each artist. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-
-8.Write a SELECT statement to display how many songs exist for each genre. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+8.Write a SELECT statement to display how many songs exist for each genre. Youll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT count(song.songid) 'song count', genre.label
+FROM song
+Join genre
+ON song.genreid = genre.genreid
+GROUP by genre.label
 
 9.Using MAX() function, write a select statement to find the album with the longest duration. The result should display the album title and the duration.
+SELECT MAX(AlbumLength), Title
+FROM Album a
+
 
 10.Using MAX() function, write a select statement to find the song with the longest duration. The result should display the song title and the duration.
+SELECT MAX(SongLength), "Length", Title
+FROM Song s
 
 11.Modify the previous query to also display the title of the album.
+SELECT MAX(SongLength), "Length", Song.Title "Song", Album.Title "Album"
+FROM Song 
+INNER JOIN Album ON Song.Albumid = Album.AlbumId
+Group BY song.songlength
